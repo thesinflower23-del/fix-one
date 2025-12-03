@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BestBuddies Pet Grooming - Premium Grooming for Pets</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a class="logo" href="index.html">
+        <img src="assets/logo.png" alt="BestBuddies logo" class="logo-mark">
+        <div class="logo-text">
+          <span class="logo-wordmark">BestBuddies Pet Grooming</span>
+        </div>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="#" onclick="handleBookNow()" class="btn btn-primary"
+            style="background: #000; color: #fff; border: 2px solid #000;">Book Now</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-drawer-overlay"></div>
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-header">
+        <a class="logo" href="index.html" style="display: flex; align-items: center; gap: 0.85rem;">
+          <img src="assets/logo.png" alt="BestBuddies logo" class="logo-mark" style="width: 48px; height: 48px;">
+          <div class="logo-text">
+            <span class="logo-wordmark" style="font-size: 1rem;">BestBuddies Pet Grooming</span>
+          </div>
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close menu">×</button>
+      </div>
+      <ul class="mobile-drawer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="#" onclick="handleBookNow()">Book Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Booking Policy - First Section with Close Button -->
+      <section class="section" style="margin-top: 2rem;" id="bookingPolicySection">
+        <div class="card" style="background: #fff; border: 2px solid #000; position: relative;">
+          <button onclick="document.getElementById('bookingPolicySection').style.display='none';"
+            style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #000;">×</button>
+          <h3 style="margin-bottom:0.5rem; color: #000; font-weight: 700;">Important Booking Policy</h3>
+          <p style="color:#000; font-size:0.95rem;">
+            Starting March 17, 2025 we collect a ₱100 booking fee per appointment. It is deductible from your final
+            bill.
+            No refunds for missed bookings. Rescheduling forfeits the fee and requires a new booking fee. Need to lift a
+            ban? Visit the store with your receipt or email BestBuddies@gmail.com
+          </p>
+        </div>
+      </section>
+
+      <!-- Featured Cuts Gallery -->
+      <section style="margin-top: 2rem; margin-bottom: 3rem;">
+        <h2 class="section-title"
+          style="text-align: left; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+          <span style="font-size: 1.8rem;">⭐</span> Featured Cuts
+        </h2>
+        <p style="color: var(--gray-600); margin-bottom: 2rem; text-align: left;">
+          Curated best grooming transformations from our talented team.
+        </p>
+        <div id="homeFeaturedFeed" class="review-feed-grid">
+          <p class="empty-state" style="margin:0;">Featured gallery coming soon...</p>
+        </div>
+      </section>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="section">
+        <h2 class="section-title">Our Grooming Packages</h2>
+        <div class="grid grid-3">
+          <!-- Service Card 1 -->
+          <div class="service-card-hover">
+            <div class="service-icon">
+              <a href="assets/5.jpg"><img src="assets/5.jpg" alt="Full Package Basic"></a>
+            </div>
+            <div class="service-content">
+              <div class="service-description">
+                <h3 class="service-title">✂️Full Package (Basic)</h3>
+                <p class="service-text">Bath & Dry · Brush/De-Shedding · Hair Cut (Basic) · Nail & Ear Clean · Foot Pad
+                  · Cologne</p>
+              </div>
+              <div class="service-pricing">
+                <div class="pricing-list">
+                  <div class="price-item">₱530<span>5kg & below</span></div>
+                  <div class="price-item">₱630<span>5.1–8kg</span></div>
+                  <div class="price-item">₱750<span>8.1–15kg</span></div>
+                  <div class="price-item">₱800<span>15.1–30kg</span></div>
+                  <div class="price-item">₱920<span>30kg & above</span></div>
+                </div>
+                <a href="#" onclick="handleBookNow()" class="btn btn-primary btn-sm"
+                  style="background: #000; color: #fff; border: 2px solid #000; margin-top: 1rem;">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="service-card-hover">
+            <div class="service-icon">
+              <a href="assets/2.jpg"><img src="assets/6.jpg" alt="Full Package Trimming & Styling"></a>
+            </div>
+            <div class="service-content">
+              <div class="service-description">
+                <h3 class="service-title">✂️Full Package (Trimming & Styling)</h3>
+                <p class="service-text">Everything in basic plus stylized haircut perfected for show-ready looks.</p>
+              </div>
+              <div class="service-pricing">
+                <div class="pricing-list">
+                  <div class="price-item">₱630<span>5kg & below</span></div>
+                  <div class="price-item">₱730<span>5.1–8kg</span></div>
+                  <div class="price-item">₱880<span>8.1–15kg</span></div>
+                  <div class="price-item">₱930<span>15.1–30kg</span></div>
+                  <div class="price-item">₱1,050<span>30kg & above</span></div>
+                </div>
+                <a href="#" onclick="handleBookNow()" class="btn btn-primary btn-sm"
+                  style="background: #000; color: #fff; border: 2px solid #000; margin-top: 1rem;">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="service-card-hover">
+            <div class="service-icon">
+              <a href="assets/3.jpg"><img src="assets/7.jpg" alt="Shampoo Bath n Bubble"></a>
+            </div>
+            <div class="service-content">
+              <div class="service-description">
+                <h3 class="service-title">🚿Shampoo Bath 'n Bubble</h3>
+                <p class="service-text">Bath & Dry · Hygiene Trim · Nail/Ear Clean · Brush/De-Shedding · Cologne</p>
+              </div>
+              <div class="service-pricing">
+                <div class="pricing-list">
+                  <div class="price-item">₱350<span>5kg & below</span></div>
+                  <div class="price-item">₱450<span>5.1–8kg</span></div>
+                  <div class="price-item">₱550<span>8.1–15kg</span></div>
+                  <div class="price-item">₱600<span>15.1–30kg</span></div>
+                  <div class="price-item">₱700<span>30kg & above</span></div>
+                </div>
+                <a href="#" onclick="handleBookNow()" class="btn btn-primary btn-sm"
+                  style="background: #000; color: #fff; border: 2px solid #000; margin-top: 1rem;">Book Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-3" style="margin-top:1.5rem;">
+          <!-- Service Card 4 -->
+          <div class="service-card-hover">
+            <div class="service-icon">
+              <a href="assets/4.jpg"><img src="assets/8.jpg" alt="Single Services"></a>
+            </div>
+            <div class="service-content">
+              <div class="service-description">
+                <h3 class="service-title">🐶Single Services</h3>
+                <p class="service-text">Quick tune-ups for in-between spa days.</p>
+              </div>
+              <div class="service-pricing">
+                <div class="pricing-list">
+                  <div class="price-item">₱50–₱80<span>Nail Trim</span></div>
+                  <div class="price-item">₱70–₱90<span>Ear Clean</span></div>
+                </div>
+                <a href="#" onclick="handleBookNow()" class="btn btn-primary btn-sm"
+                  style="background: #000; color: #fff; border: 2px solid #000; margin-top: 1rem;">Book Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Service Card 5 -->
+          <div class="service-card-hover">
+            <div class="service-icon">
+              <!-- <a href="assets/pics.jpg"><img src="assets/pics.jpg" alt="Add-ons"></a> -->
+            </div>
+            <div class="service-content">
+              <div class="service-description">
+                <h3 class="service-title">🪥🐶✂️Add-ons</h3>
+                <p class="service-text">Enhance your grooming experience with premium add-ons.</p>
+              </div>
+              <div class="service-pricing">
+                <div class="pricing-list">
+                  <div class="price-item">₱25<span>Toothbrush (take-home)</span></div>
+                  <div class="price-item">₱80–₱250<span>De-matting session</span></div>
+                </div>
+                <a href="#" class="btn btn-primary btn-sm"
+                  style="background: #000; color: #fff; border: 2px solid #000; margin-top: 1rem;">Book Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Service Card 6 -->
+          <div class="service-card-hover">
+            <div class="service-icon">
+              <!-- <a href="assets/pics.jpg"><img src="assets/pics.jpg" alt="Booking Checklist"></a> -->
+            </div>
+            <div class="service-content">
+              <div class="service-description">
+                <h3 class="service-title">Booking Checklist</h3>
+                <p class="service-text">Owner's full name, address, contact number, pet's name, breed, age, weight,
+                  medical concerns, and latest vaccinations help us prep the perfect spa day.</p>
+              </div>
+              <div class="service-pricing">
+                <p style="text-align: center; color: #999; font-size: 0.9rem;">Required information for booking</p>
+                <a href="#"class="btn btn-primary btn-sm"
+                  style="background: #000; color: #fff; border: 2px solid #000; margin-top: 1rem;">Book Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
+    <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-image" src="" alt="Full size image">
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 BestBuddies Pet Grooming. All rights reserved.</p>
+      <p>Premium grooming services for your beloved pets</p>
+    </div>
+  </footer>
+
+  <link rel="stylesheet" href="css/custom-alert.css">
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/firebase-db.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/custom-alert.js"></script>
+  <script>
+    function handleBookNow() {
+      event.preventDefault();
+      // Go directly to booking - allow browse, auth gate at checkout
+      window.location.href = 'booking.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', async function () {
+      if (typeof renderFeaturedCutsGallery === 'function') {
+        await renderFeaturedCutsGallery('homeFeaturedFeed', 4);
+      }
+    });
+  </script>
+</body>
+
+</html>

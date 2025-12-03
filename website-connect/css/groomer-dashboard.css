@@ -1,0 +1,60 @@
+/* ============================================
+   BestBuddies Pet Grooming - Groomer Dashboard Styles
+   ============================================ */
+
+/* Groomer Stats Grid */
+#groomerStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Profile Form */
+#groomerProfileForm {
+  margin-top: 1rem;
+}
+
+#groomerProfileForm .form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Absence History */
+.absence-card {
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 1rem;
+}
+
+.absence-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Calendar */
+#groomerCalendar {
+  min-height: 400px;
+}
+
+/* Bookings Container */
+#groomerBookingsContainer .card {
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+#groomerBookingsContainer .card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #groomerStats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - BestBuddies Pet Grooming</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="logo" href="index.html">
+        <img src="assets/logo.png" alt="BestBuddies logo" class="logo-mark">
+        <div class="logo-text">
+          <span class="logo-wordmark">BestBuddies Pet Grooming</span>
+        </div>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#testimonials">Testimony</a></li>
+        <li><a href="#" onclick="logout(event)">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-drawer-overlay"></div>
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-header">
+        <a class="logo" href="index.html" style="display: flex; align-items: center; gap: 0.85rem;">
+          <img src="assets/logo.png" alt="BestBuddies logo" class="logo-mark" style="width: 48px; height: 48px;">
+          <div class="logo-text">
+            <span class="logo-wordmark" style="font-size: 1rem;">BestBuddies Pet Grooming</span>
+          </div>
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close menu">×</button>
+      </div>
+      <ul class="mobile-drawer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.htmls">Services</a></li>
+        <li><a href="reviews.html">Testimony</a></li>
+        <li><a href="#" onclick="logout(event)">Logout</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="container-lg" id="adminDashboard">
+      <!-- Welcome Header -->
+      <div class="dashboard-header" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(222, 222, 222, 0.7)); border: none; margin-bottom: 2rem;">
+        <h1 class="dashboard-title" style="margin: 0;">
+          👨‍💼 Admin Dashboard
+        </h1>
+        <p style="color: var(--gray-600); margin-top: 0.5rem; font-size: 1.125rem;">
+          Manage bookings, customers, and appointments
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem;" class="admin-layout" id="adminLayout">
+        <!-- Sidebar -->
+        <div class="sidebar" style="background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.5rem; height: fit-content; position: sticky; top: 100px;">
+          <ul class="sidebar-menu" style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="overview" class="active" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                📊 Dashboard Overview
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="pending" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                ⏳ Pending Bookings
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="confirmed" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                ✅ Confirmed Bookings
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="calendar" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                📅 Calendar View
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="customers" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                👥 Customer Management
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="groomerAbsences" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                🧑‍⚕️ Groomer Absences
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="history" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                🧾 Booking History
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="gallery" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                📸 Featured Gallery
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="walkIn" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                ➕ Walk-In Appointment
+              </a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <a href="#" data-view="account" style="display: block; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: var(--transition); color: var(--gray-700); font-weight: 500; text-decoration: none;">
+                🔒 Change Password
+              </a>
+            </li>
+          </ul>
+          <div class="sidebar-panel" style="margin-top:1.5rem;">
+            <h4 style="margin-bottom:0.75rem;">Pending Groomer Absences</h4>
+            <div id="staffAlertPanel">
+              <p class="empty-state" style="margin:0;">All caught up!</p>
+            </div>
+          </div>
+          <div class="sidebar-panel" style="margin-top:1.5rem; padding-top:1.5rem; border-top: 1px solid var(--gray-200);">
+            <h4 style="margin-bottom:0.75rem;">📸 Featured Cuts</h4>
+            <div id="featuredCutsPanel">
+              <p class="empty-state" style="margin:0; font-size:0.85rem;">Loading...</p>
+            </div>
+          </div>
+          <div class="sidebar-panel" style="margin-top:1.5rem; padding-top:1.5rem; border-top: 1px solid var(--gray-200);">
+            <h4 style="margin-bottom:0.75rem;">🚫 Blocked Customers</h4>
+            <div id="blockedCustomersPanel">
+              <p class="empty-state" style="margin:0; font-size:0.85rem;">No blocked customers</p>
+            </div>
+          </div>
+          <div class="sidebar-panel" style="margin-top:1.5rem; padding-top:1.5rem; border-top: 1px solid var(--gray-200);">
+            <h4 style="margin-bottom:0.75rem;">✅ Approved Lift Ban</h4>
+            <div id="liftBanPanel">
+              <p class="empty-state" style="margin:0; font-size:0.85rem;">No lift ban requests</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div>
+          <!-- Overview Section -->
+          <div id="overviewView">
+            <h2 style="margin-bottom: 1.5rem; color: var(--gray-900);">📊 Dashboard Overview</h2>
+            
+            <div class="stats-grid" style="margin-bottom: 2rem;" id="statsCardsContainer">
+              <!-- Stats cards will be loaded here -->
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+                <h3 style="margin: 0; color: var(--gray-900);">📋 Recent Bookings</h3>
+                <div class="booking-filter-group">
+                  <label style="color: var(--gray-600); font-weight: 500;">Show:</label>
+                  <select id="recentBookingsFilter" onchange="changeRecentBookingsLimit(this.value)" class="booking-filter-select">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="all">All</option>
+                  </select>
+                  <span style="color: var(--gray-600); font-weight: 500;">entries</span>
+                </div>
+              </div>
+              <div id="recentBookings">
+                <!-- Recent bookings will be loaded here -->
+              </div>
+              <div id="recentPagination" style="margin-top:1rem;"></div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <h3 style="margin-bottom: 1rem; color: var(--gray-900);">📅 Team Calendar</h3>
+              <div id="adminCalendar"></div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <h3 style="margin-bottom: 1rem; color: var(--gray-900);">💬 Community Grooming Feed</h3>
+              <div id="adminReviewFeed" class="review-feed-grid">
+                <!-- Review feed populated via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Pending Bookings Section -->
+          <div id="pendingView" style="display: none;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--gray-900);">⏳ Pending Bookings</h2>
+            
+            <div class="search-bar">
+              <input 
+                type="text" 
+                id="pendingSearch" 
+                class="search-input" 
+                placeholder="🔍 Search by customer name, pet name, or package..."
+              >
+            </div>
+
+            <div id="pendingBookingsTable" style="margin-top: 1.5rem;">
+              <!-- Pending bookings table will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Confirmed Bookings Section -->
+          <div id="confirmedView" style="display: none;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--gray-900);">✅ Confirmed Bookings</h2>
+            
+            <div id="confirmedBookingsTable">
+              <!-- Confirmed bookings table will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Calendar View Section -->
+          <div id="calendarView" style="display: none;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--gray-900);">📅 Calendar View</h2>
+            
+            <div class="card" style="margin-bottom: 2rem;">
+              <div class="form-group">
+                <label for="calendarDate" class="form-label">📆 Select Date</label>
+                <input 
+                  type="date" 
+                  id="calendarDate" 
+                  class="calendar-input"
+                >
+              </div>
+            </div>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label for="calendarBlockReason" class="form-label">Reason for closing (optional)</label>
+                <input type="text" id="calendarBlockReason" class="form-input" placeholder="e.g. Deep cleaning, Holiday schedule">
+              </div>
+              <div class="form-actions" style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+                <button id="calendarBlockBtn" class="btn btn-danger">🚫 Block selected day</button>
+                <button id="calendarUnblockBtn" class="btn btn-outline">✅ Re-open selected day</button>
+              </div>
+              <p id="calendarBlockStatus" class="form-hint" style="margin-top:0.5rem;"></p>
+            </div>
+
+            <div class="card" style="margin-bottom:2rem;">
+              <h4 style="margin-bottom:0.75rem;">Upcoming closed days</h4>
+              <div id="calendarBlackoutList" class="empty-state">No closed days yet.</div>
+            </div>
+
+            <div id="calendarAppointments">
+              <!-- Appointments will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Customer Management Section -->
+          <div id="customersView" style="display: none;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--gray-900);">👥 Customer Management</h2>
+            
+            <div id="customersTable">
+              <!-- Customers table will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Groomer Absence Section -->
+          <div id="groomerAbsencesView" style="display:none;">
+            <h2 style="margin-bottom:1.5rem; color: var(--gray-900);">🧑‍⚕️ Groomer Absence Requests</h2>
+            <div id="groomerAbsenceTable"></div>
+          </div>
+
+          <!-- Walk-In Appointment Section -->
+          <div id="walkInView" style="display:none;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+              <button onclick="switchView('overview')" class="btn btn-outline" style="background: transparent; border: 2px solid #000; color: #000;">← Back</button>
+              <h2 style="margin: 0; flex: 1; color: var(--gray-900);">➕ Create Walk-In Appointment</h2>
+            </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+              <div class="step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label">Pet Type</div>
+              </div>
+              <div class="step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label">Package</div>
+              </div>
+              <div class="step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label">Groomer & Slots</div>
+              </div>
+              <div class="step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-label">Customer Info</div>
+              </div>
+              <div class="step" data-step="5">
+                <div class="step-number">5</div>
+                <div class="step-label">Review</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 400px; gap: 2rem; margin-top: 2rem;" class="walk-in-booking-layout">
+              <!-- Main Booking Form -->
+              <div class="walk-in-main-content">
+                <!-- Step 1: Pet Type -->
+                <div id="walkInStep1" class="booking-step-content">
+                  <h3 style="margin-bottom: 1.5rem;">Select Pet Type</h3>
+                  <div class="pet-type-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="pet-type-card" data-pet-type="dog" style="cursor: pointer; padding: 2rem; background: var(--white); border: 2px solid var(--gray-200); border-radius: var(--radius); text-align: center; transition: var(--transition);">
+                      <div style="font-size: 4rem; margin-bottom: 1rem;">🐕</div>
+                      <h4 style="margin-bottom: 0.5rem;">Dog</h4>
+                      <p style="color: var(--gray-600); font-size: 0.9rem;">Grooming services for dogs</p>
+                    </div>
+                    <div class="pet-type-card" data-pet-type="cat" style="cursor: pointer; padding: 2rem; background: var(--white); border: 2px solid var(--gray-200); border-radius: var(--radius); text-align: center; transition: var(--transition);">
+                      <div style="font-size: 4rem; margin-bottom: 1rem;">🐈</div>
+                      <h4 style="margin-bottom: 0.5rem;">Cat</h4>
+                      <p style="color: var(--gray-600); font-size: 0.9rem;">Grooming services for cats</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2: Package -->
+                <div id="walkInStep2" class="booking-step-content" style="display: none;">
+                  <h3 style="margin-bottom: 1.5rem;">Select Package</h3>
+                  <div id="walkInPackagesContainer"></div>
+                </div>
+
+                <!-- Step 3: Groomer & Time -->
+                <div id="walkInStep3" class="booking-step-content" style="display: none;">
+                  <h3 style="margin-bottom: 1.5rem;">Select Groomer & Time</h3>
+                  <div id="walkInGroomersContainer" style="margin-bottom: 2rem;"></div>
+                  <div id="walkInCalendarTimePicker"></div>
+                </div>
+
+                <!-- Step 4: Customer Info -->
+                <div id="walkInStep4" class="booking-step-content" style="display: none;">
+                  <h3 style="margin-bottom: 1.5rem;">Customer Information</h3>
+                  <form id="walkInForm">
+                    <div class="form-group">
+                      <label for="walkInName" class="form-label">Customer Name</label>
+                      <input type="text" id="walkInName" class="form-input" placeholder="Enter customer name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="walkInPhone" class="form-label">Contact Number (11 digits)</label>
+                      <input type="tel" id="walkInPhone" class="form-input" placeholder="+63" required pattern="(\+63|0)[0-9]{10}" maxlength="13">
+                    </div>
+                    <div class="form-group">
+                      <label for="walkInPetName" class="form-label">Pet Name</label>
+                      <input type="text" id="walkInPetName" class="form-input" placeholder="Enter pet name" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Vaccination Status</label>
+                      <div class="form-radio-group">
+                        <label class="radio-label">
+                          <input type="radio" name="walkInVaccination" value="up-to-date" required>
+                          <span>Up to date</span>
+                        </label>
+                        <label class="radio-label">
+                          <input type="radio" name="walkInVaccination" value="not-up-to-date" required>
+                          <span>Not up to date</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="walkInWeight" class="form-label">Pet Weight</label>
+                      <select id="walkInWeight" class="form-select" required>
+                        <option value="">Select weight range...</option>
+                        <option value="5kg & below">5kg & below</option>
+                        <option value="5.1 - 8kg">5.1 - 8kg</option>
+                        <option value="8.1 - 15kg">8.1 - 15kg</option>
+                        <option value="15.1 - 30kg">15.1 - 30kg</option>
+                        <option value="30kg & above">30kg & above</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Single Services (Add-ons)</label>
+                      <div class="addon-grid" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <label class="addon-chip">
+                          <input type="checkbox" id="walkInNail" value="nail">
+                          <span>Nail Trim (+₱50-80)</span>
+                        </label>
+                        <label class="addon-chip">
+                          <input type="checkbox" id="walkInEar" value="ear">
+                          <span>Ear Clean (+₱70-90)</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Additional Add-ons</label>
+                      <div class="addon-grid" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <label class="addon-chip">
+                          <input type="checkbox" id="walkInToothbrush" value="toothbrush">
+                          <span>Toothbrush (+₱25)</span>
+                        </label>
+                        <label class="addon-chip">
+                          <input type="checkbox" id="walkInDematting" value="dematting">
+                          <span>De-matting (+₱80-250)</span>
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Step 5: Review -->
+                <div id="walkInStep5" class="booking-step-content" style="display: none;">
+                  <h3 style="margin-bottom: 1.5rem;">Review & Confirm</h3>
+                  <div id="walkInReviewContainer"></div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                  <button id="walkInPrevBtn" class="btn btn-outline" style="display: none;">← Previous</button>
+                  <button id="walkInNextBtn" class="btn btn-primary" style="display: none;">Next →</button>
+                  <button id="walkInSubmitBtn" class="btn btn-primary" style="display: none;">Confirm Booking</button>
+                </div>
+                
+                <!-- Price Summary (moved below buttons, no sticky) -->
+                <div class="card" style="margin-top: 2rem; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.5rem;">
+                  <h3 style="margin-bottom: 1rem;">Booking Summary</h3>
+                  <div id="walkInSummaryContainer">
+                    <p style="color: var(--gray-600);">Complete the steps to see booking summary</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sidebar Summary (hidden, summary moved to main content) -->
+              <div class="booking-sidebar walk-in-summary-sidebar" style="display: none;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking History Section -->
+          <div id="historyView" style="display:none;">
+            <h2 style="margin-bottom:1.5rem; color:var(--gray-900);">🧾 Booking History</h2>
+            <div id="historyControls"></div>
+            <div id="bookingHistoryTable"></div>
+          </div>
+
+          <!-- Featured Gallery Section -->
+          <div id="galleryView" style="display:none;">
+            <h2 style="margin-bottom:1.5rem; color:var(--gray-900);">📸 Featured Gallery Manager</h2>
+            <p style="color:var(--gray-600); margin-bottom:1.5rem;">Upload before & after images for confirmed bookings, then feature them to display on the home page.</p>
+            
+            <!-- Filter by status -->
+            <div style="margin-bottom:1.5rem;">
+              <label style="color:var(--gray-700); font-weight:600;">Filter: </label>
+              <select id="galleryStatusFilter" onchange="loadGalleryView()" style="padding:0.5rem; border:1px solid var(--gray-300); border-radius:0.25rem;">
+                <option value="confirmed">Confirmed Bookings Only</option>
+                <option value="all">All with Images</option>
+              </select>
+            </div>
+
+            <!-- Gallery grid -->
+            <div id="galleryGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
+              <p class="empty-state">Loading bookings...</p>
+            </div>
+          </div>
+
+          <!-- Account Section -->
+          <div id="accountView" style="display:none;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--gray-900);">🔒 Change Password</h2>
+            <div class="card" style="max-width: 600px;">
+              <div class="card-body">
+                <form id="adminPasswordForm">
+                  <div class="form-group">
+                    <label for="adminCurrentPassword" class="form-label">Current Password</label>
+                    <input type="password" id="adminCurrentPassword" class="form-input" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="adminNewPassword" class="form-label">New Password</label>
+                    <input type="password" id="adminNewPassword" class="form-input" minlength="6" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="adminConfirmPassword" class="form-label">Confirm New Password</label>
+                    <input type="password" id="adminConfirmPassword" class="form-input" minlength="6" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width:100%;">Update Password</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 BestBuddies Pet Grooming. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="modalRoot"></div>
+
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/firebase-db.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/custom-alert.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

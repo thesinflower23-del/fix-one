@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Supabase Google Login Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+    pre { background: #f4f4f4; padding: 10px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+
+  <h1>Supabase Google Login Test</h1>
+
+  <button id="login">Sign in with Google</button>
+  <button id="logout">Logout</button>
+
+  <pre id="output">Session info will appear here...</pre>
+
+  <script>
+    const SUPABASE_URL = "https://uizkbnggqfwvmzttwbjx.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_2eN4AysGiTAtd1ru-kXRmg_x8LzjyQk";
+
+    const { createClient } = supabase;
+    const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const output = document.getElementById("output");
+
+    document.getElementById("login").onclick = async () => {
+      const { data, error } = await client.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${SUPABASE_URL}/auth/v1/callback`,
+          flowType: "pkce"
+        }
+      });
+
+      if (error) {
+        output.textContent = "Error: " + error.message;
+      } else {
+        output.textContent = "Login popup opened.";
+      }
+    };
+
+    document.getElementById("logout").onclick = async () => {
+      await client.auth.signOut();
+      output.textContent = "Logged out";
+    };
+
+    async function checkSession() {
+      const { data } = await client.auth.getSession();
+      if (data.session) {
+        output.textContent = "Logged in:\n" + JSON.stringify(data.session.user, null, 2);
+      } else {
+        output.textContent = "No active session";
+      }
+    }
+
+    checkSession();
+
+    client.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        output.textContent = "Logged in:\n" + JSON.stringify(session.user, null, 2);
+      } else {
+        output.textContent = "No active session";
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+/* ============================================
+   BestBuddies Pet Grooming - Login Page Styles
+   ============================================ */
+
+/* Login Form Container */
+.container-sm .card {
+  max-width: 500px;
+  margin: 3rem auto;
+}
+
+/* Google Sign-In Button */
+.btn[onclick="handleGoogleSignIn()"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn[onclick="handleGoogleSignIn()"] svg {
+  flex-shrink: 0;
+}
+
+/* Form Styling */
+#loginForm {
+  margin-bottom: 1.5rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .container-sm .card {
+    margin: 2rem auto;
+    padding: 1.5rem !important;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+

@@ -1,0 +1,392 @@
+/* ============================================
+   BestBuddies Pet Grooming - Booking Page Styles
+   ============================================ */
+
+/* Booking Layout */
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Booking Steps */
+.booking-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.booking-steps::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gray-200);
+  z-index: 0;
+}
+
+.booking-steps .step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.booking-steps .step-number {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--gray-200);
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin: 0 auto 0.5rem;
+  transition: var(--transition);
+}
+
+.booking-steps .step.active .step-number {
+  background: linear-gradient(135deg, var(--gray-900), var(--gray-600));
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.booking-steps .step.completed .step-number {
+  background: var(--gray-900);
+  color: var(--white);
+}
+
+.booking-steps .step-label {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.booking-steps .step.active .step-label {
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+/* Step Content */
+.step-content {
+  display: none;
+}
+
+.step-content.active {
+  display: block;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Pet Type Cards */
+.pet-type-card {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pet-type-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pet-type-card.selected {
+  border-color: var(--gray-900);
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.08), rgba(72, 72, 72, 0.08));
+}
+
+/* Package Cards */
+.package-card {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.package-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.package-card.selected {
+  border-color: var(--gray-900);
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.08), rgba(72, 72, 72, 0.08));
+}
+
+/* Groomer Cards */
+.groomer-card {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.groomer-card:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.groomer-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Weight Checklist */
+.weight-checklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Summary Card */
+.summary-card {
+  position: sticky;
+  top: 100px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    position: static !important;
+    margin-top: 2rem;
+  }
+
+  .booking-steps {
+    overflow-x: auto;
+    padding: 1rem 0.5rem;
+  }
+
+  .booking-steps .step {
+    min-width: 70px;
+    flex-shrink: 0;
+  }
+
+  .booking-steps .step-number {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .booking-steps .step-label {
+    font-size: 0.75rem !important;
+    white-space: nowrap;
+  }
+
+  /* Force ALL buttons to be block on mobile - override inline styles */
+  /* Make all buttons look like Next button (dark background, white text) on mobile */
+  #prevBtn:not([data-hidden]),
+  #nextBtn:not([data-hidden]),
+  #submitBooking:not([data-hidden]) {
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+    /* Make all buttons look like Next button (primary style) on mobile */
+    background: linear-gradient(135deg, var(--gray-900), var(--gray-700)) !important;
+    color: var(--white) !important;
+    border: none !important;
+    box-shadow: var(--shadow) !important;
+  }
+
+  /* Convert inline-block to block on mobile */
+  #prevBtn[style*="inline-block"]:not([data-hidden]),
+  #nextBtn[style*="inline-block"]:not([data-hidden]),
+  #submitBooking[style*="inline-block"]:not([data-hidden]) {
+    display: block !important;
+  }
+
+  /* Show nextBtn by default if it doesn't have data-hidden */
+  #nextBtn:not([data-hidden]) {
+    display: block !important;
+  }
+
+  /* Hide buttons with data-hidden attribute */
+  #prevBtn[data-hidden],
+  #nextBtn[data-hidden],
+  #submitBooking[data-hidden] {
+    display: none !important;
+  }
+
+  /* Navigation buttons container */
+  div[style*="justify-content: space-between"][style*="margin-top: 2rem"] {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    background: var(--white) !important;
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0 !important;
+    border-top: 2px solid var(--gray-200) !important;
+    z-index: 100 !important;
+    display: flex !important;
+    visibility: visible !important;
+  }
+
+  /* Ensure button container is always visible */
+  .booking-layout>div:first-child>div[style*="justify-content: space-between"] {
+    display: flex !important;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px !important;
+    padding: 1rem !important;
+  }
+
+  .time-slot {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    min-height: 50px;
+  }
+
+  .package-card,
+  .groomer-card,
+  .pet-type-card {
+    min-height: 120px;
+    padding: 1.5rem !important;
+  }
+}
+
+/* ============================================
+   Lightbox Modal for Images
+   ============================================ */
+
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+#lightbox.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox-image {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  animation: slideIn 0.3s ease;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 10000;
+  transition: transform 0.2s ease;
+}
+
+#lightbox-close:hover {
+  transform: scale(1.2);
+}
+
+/* Grooming Cut Button Styles */
+.cut-selector-btn {
+  transition: all 0.3s ease;
+}
+
+.cut-selector-btn:hover {
+  background: #ddd !important;
+  border-color: #999 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cut-selector-btn.selected {
+  background: #d0d0d0 !important;
+  border: 2px solid #999 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
+.selected-cut {
+  outline: 3px solid #2e7d32 !important;
+}
+
+.selected-cut-card {
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.08) !important;
+  border-radius: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* ============================================
+   Tablet / Mobile Landscape (481px - 768px)
+   ============================================ */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+  /* Keep sidebar stacked but improve layout */
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Allow steps to be more visible */
+  .booking-steps {
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .booking-steps .step {
+    min-width: 100px;
+  }
+
+  /* 2 columns for pet types and packages if possible */
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Ensure summary card is visible */
+  .summary-card {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,16 @@
+/* ============================================
+   BestBuddies Pet Grooming - Staff Dashboard Styles
+   ============================================ */
+
+/* Staff Dashboard Specific Styles */
+.staff-dashboard-content {
+  padding: 2rem 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .staff-dashboard-content {
+    padding: 1rem 0;
+  }
+}
+
